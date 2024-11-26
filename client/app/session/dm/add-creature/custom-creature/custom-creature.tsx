@@ -57,14 +57,17 @@ export const CustomCreature: FC<CustomCreatureProps> = ({ onAddClick }) => {
         .then(_ => {
             onAddClick(updateMonsterInfo);
             getMonsterOptions();
-
         });
     }
 
     async function handleFileImport(event: ChangeEvent<any>) {
         const file: File = event.target.files[0];
         const monsterJson: Monster = JSON.parse(await file.text());
-        onAddClick(monsterJson);
+        addCustomMonster(sessionId, monsterJson)
+        .then(_ => {
+            onAddClick(monsterJson);
+            getMonsterOptions();
+        });
     }
 
     function handleExportMonster(exportMonster: Monster) {
