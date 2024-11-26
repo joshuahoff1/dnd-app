@@ -23,7 +23,11 @@ const MenuProps = {
   },
 };
 
-const EMPTY_MONSTER_OPTION: APIReference = { index: '', name: '', url: ''};
+const EMPTY_MONSTER_OPTION: APIReference = { 
+    index: '', 
+    name: '', 
+    url: ''
+};
 
 interface CalculatedMonsterInfo {
     initiativeAdd: number,
@@ -223,7 +227,7 @@ export const AddCharacter:FC<AddCharacterProps> = ({onAddClick}) => {
                     getOptionLabel={x => x.name}
                     getOptionKey={X => X.index}
                     onChange={(e, v) => {
-                        setMonster(v!);
+                        setMonster(v ?? EMPTY_MONSTER_OPTION);
                         if(v != null)
                             setName(v.name);
                         else 
